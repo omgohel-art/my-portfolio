@@ -78,12 +78,12 @@ export function Hero() {
             <div className="w-full h-full relative group">
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
               <img
-                src="/profile.jpg"
+                src="/profile.png"
                 alt="Om Gohel"
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
-                className="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition-all duration-700 border border-border/50"
+                className="w-full h-full object-cover object-top rounded-2xl grayscale hover:grayscale-0 transition-all duration-700 border border-border/50"
                 onError={(e) => {
                   e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800";
                   e.currentTarget.className = e.currentTarget.className + " opacity-20";
