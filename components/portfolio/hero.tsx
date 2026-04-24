@@ -39,8 +39,8 @@ export function Hero() {
         }}
       />
 
-      <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-        <div className="space-y-6 animate-in fade-in slide-in-from-left-4 duration-700">
+      <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center relative z-10">
+        <div className="space-y-6 animate-in fade-in slide-in-from-left-4 duration-700 text-center lg:text-left order-2 lg:order-1">
           <p className="text-primary text-sm uppercase tracking-widest font-medium">
             Undergraduate Junior Developer
           </p>
@@ -51,7 +51,7 @@ export function Hero() {
             Passionate undergraduate developer actively seeking internships and real-world opportunities to apply my skills in building impactful digital solutions.
           </p>
 
-          <div className="flex gap-4 pt-4">
+          <div className="flex gap-4 pt-4 justify-center lg:justify-start">
             <Button
               asChild
               className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
@@ -69,8 +69,8 @@ export function Hero() {
         </div>
 
         {/* User Profile Image */}
-        <div className="hidden lg:flex items-center justify-center animate-in fade-in slide-in-from-right-4 duration-700 delay-200">
-          <div className="relative w-96 h-[500px]">
+        <div className="flex items-center justify-center animate-in fade-in slide-in-from-right-4 duration-700 delay-200 order-1 lg:order-2">
+          <div className="relative w-full max-w-[260px] sm:max-w-[320px] lg:max-w-none lg:w-96 h-[320px] sm:h-[400px] lg:h-[500px]">
             {/* Background decorative elements */}
             <div className="absolute inset-x-[-10%] inset-y-[-5%] bg-gradient-to-tr from-primary/10 to-transparent blur-3xl -z-10 rounded-full" />
             
@@ -80,6 +80,9 @@ export function Hero() {
               <img
                 src="/profile.jpg"
                 alt="Om Gohel"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
                 className="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition-all duration-700 border border-border/50"
                 onError={(e) => {
                   e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800";
