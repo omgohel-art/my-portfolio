@@ -5,7 +5,7 @@ import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Github, Linkedin, Twitter, Loader2, CheckCircle, XCircle } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin, Loader2, CheckCircle, XCircle } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -132,18 +132,13 @@ export function Contact() {
                   <Github className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/omgohel1328/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/20 transition-colors group"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                </a>
-                <a
-                  href="#"
-                  className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/20 transition-colors group"
-                  aria-label="Twitter"
-                >
-                  <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </a>
               </div>
             </div>
