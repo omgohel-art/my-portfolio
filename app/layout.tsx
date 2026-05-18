@@ -1,21 +1,19 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Kanit } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
+import { LenisProvider } from '@/components/lenis-provider'
 import './globals.css'
 
-const geistSans = Geist({
+const kanit = Kanit({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
-});
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-kanit",
 });
 
 export const metadata: Metadata = {
-  title: 'Portfolio | Developer',
-  description: 'A modern, professional portfolio showcasing my work and skills as a developer',
+  title: 'OM GOHEL -- 3D Creator',
+  description: 'a 3d creator driven by crafting striking and unforgettable projects',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -42,18 +40,21 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="bg-background" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+    <html lang="en" className="bg-[#0C0C0C]" suppressHydrationWarning>
+      <body className={`${kanit.variable} font-sans antialiased bg-[#0C0C0C] text-[#D7E2EA]`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          {process.env.NODE_ENV === 'production' && <Analytics />}
+          <LenisProvider>
+            {children}
+            {process.env.NODE_ENV === 'production' && <Analytics />}
+          </LenisProvider>
         </ThemeProvider>
       </body>
     </html>
   )
 }
+

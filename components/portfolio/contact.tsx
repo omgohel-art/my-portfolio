@@ -28,7 +28,7 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formRef.current) return;
 
     // Validation
@@ -46,9 +46,8 @@ export function Contact() {
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
-      console.error("EmailJS Error: Missing environment variables. Check your .env.local file.");
-      setStatus("error");
-      setStatusMessage("Contact form is not configured. Please see .env.local.example for setup instructions.");
+      console.warn("EmailJS not configured. Using mailto fallback.");
+      window.location.href = `mailto:omjigneshgohel@gmail.com?subject=Project Inquiry from ${formState.name}&body=${formState.message}`;
       setIsLoading(false);
       return;
     }
@@ -67,78 +66,80 @@ export function Contact() {
       setIsSuccessModalOpen(true);
     } catch (error: any) {
       console.error("EmailJS Error:", error);
+      console.warn("EmailJS failed. Using mailto fallback.");
+      window.location.href = `mailto:omjigneshgohel@gmail.com?subject=Project Inquiry from ${formState.name}&body=${formState.message}`;
       setStatus("error");
-      setStatusMessage(error?.text || "Failed to send message. Please try again later.");
+      setStatusMessage("Failed to send via EmailJS. Redirecting to your email client...");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <section id="contact" className="py-24 relative bg-card/30">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <p className="text-primary text-sm uppercase tracking-widest font-medium mb-3">
+    <section id="contact" className="py-32 relative bg-[#0C0C0C]">
+      <div className="max-w-[1400px] mx-auto px-6">
+        <div className="text-center mb-16">
+          <p className="text-[#888] text-sm uppercase tracking-widest font-medium mb-3">
             Get in Touch
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-            Let&apos;s Work Together
+          <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-4">
+            Let's Work Together
           </h2>
-          <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
-            Have a project in mind or want to collaborate? I&apos;d love to hear from you.
+          <p className="text-[#888] max-w-md mx-auto leading-relaxed">
+            Have a project in mind or want to collaborate? I'd love to hear from you.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-16">
           {/* Contact Info */}
-          <div className="space-y-8 animate-in fade-in slide-in-from-left-4 duration-700">
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
-                  <Mail className="w-5 h-5 text-primary" />
+          <div className="space-y-12">
+            <div className="space-y-8">
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-full border border-[#333] bg-[#0a0a0a] flex items-center justify-center group-hover:border-[#7C3AED] transition-colors">
+                  <Mail className="w-6 h-6 text-[#7C3AED]" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Email</p>
+                  <p className="text-sm text-[#888] uppercase tracking-widest mb-1">Email</p>
                   <a
                     href="mailto:omjigneshgohel@gmail.com"
-                    className="text-foreground hover:text-primary transition-colors"
+                    className="text-xl font-bold text-white hover:text-[#7C3AED] transition-colors"
                   >
                     omjigneshgohel@gmail.com
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-primary" />
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-full border border-[#333] bg-[#0a0a0a] flex items-center justify-center">
+                  <MapPin className="w-6 h-6 text-[#7C3AED]" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Location</p>
-                  <p className="text-foreground">Ahmedabad, Gujarat</p>
+                  <p className="text-sm text-[#888] uppercase tracking-widest mb-1">Location</p>
+                  <p className="text-xl font-bold text-white">Ahmedabad, Gujarat</p>
                 </div>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-border/50">
-              <p className="text-sm text-muted-foreground mb-4">Connect with me</p>
+            <div className="pt-8 border-t border-[#222]">
+              <p className="text-sm text-[#888] uppercase tracking-widest mb-6">Connect with me</p>
               <div className="flex gap-4">
                 <a
                   href="https://github.com/omgohel-art"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/20 transition-colors group"
+                  className="w-14 h-14 rounded-full border border-[#333] bg-[#0a0a0a] flex items-center justify-center hover:bg-[#7C3AED] hover:border-[#7C3AED] transition-colors group"
                   aria-label="GitHub"
                 >
-                  <Github className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <Github className="w-6 h-6 text-[#888] group-hover:text-white transition-colors" />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/omgohel1328/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/20 transition-colors group"
+                  className="w-14 h-14 rounded-full border border-[#333] bg-[#0a0a0a] flex items-center justify-center hover:bg-[#7C3AED] hover:border-[#7C3AED] transition-colors group"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <Linkedin className="w-6 h-6 text-[#888] group-hover:text-white transition-colors" />
                 </a>
               </div>
             </div>
@@ -148,10 +149,10 @@ export function Contact() {
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-700"
+            className="space-y-6"
           >
             <div className="space-y-2">
-              <label htmlFor="name" className="text-sm text-muted-foreground">
+              <label htmlFor="name" className="text-xs uppercase tracking-widest text-[#888]">
                 Name
               </label>
               <Input
@@ -160,16 +161,15 @@ export function Contact() {
                 type="text"
                 value={formState.name}
                 onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                placeholder="Your name"
-                className="bg-background border-border focus:border-primary/50 rounded-lg"
+                placeholder="YOUR NAME"
+                className="bg-[#0a0a0a] border-[#333] text-white focus:border-[#7C3AED] rounded-none py-6 h-14 uppercase placeholder:text-[#444]"
                 required
                 disabled={isLoading}
-                suppressHydrationWarning
               />
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="email" className="text-sm text-muted-foreground">
+              <label htmlFor="email" className="text-xs uppercase tracking-widest text-[#888]">
                 Email
               </label>
               <Input
@@ -178,16 +178,15 @@ export function Contact() {
                 type="email"
                 value={formState.email}
                 onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                placeholder="your@email.com"
-                className="bg-background border-border focus:border-primary/50 rounded-lg"
+                placeholder="YOUR@EMAIL.COM"
+                className="bg-[#0a0a0a] border-[#333] text-white focus:border-[#7C3AED] rounded-none py-6 h-14 uppercase placeholder:text-[#444]"
                 required
                 disabled={isLoading}
-                suppressHydrationWarning
               />
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="message" className="text-sm text-muted-foreground">
+              <label htmlFor="message" className="text-xs uppercase tracking-widest text-[#888]">
                 Message
               </label>
               <Textarea
@@ -195,47 +194,52 @@ export function Contact() {
                 name="message"
                 value={formState.message}
                 onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                placeholder="Tell me about your project..."
+                placeholder="TELL ME ABOUT YOUR PROJECT..."
                 rows={5}
-                className="bg-background border-border focus:border-primary/50 rounded-lg resize-none"
+                className="bg-[#0a0a0a] border-[#333] text-white focus:border-[#7C3AED] rounded-none resize-none uppercase placeholder:text-[#444] pt-4"
                 required
                 disabled={isLoading}
-                suppressHydrationWarning
               />
             </div>
 
             {/* Status Message */}
             {status !== "idle" && (
               <div
-                className={`flex items-center gap-2 p-3 rounded-lg ${
-                  status === "success"
-                    ? "bg-green-500/10 text-green-400"
-                    : "bg-red-500/10 text-red-400"
-                }`}
+                className={`flex items-center gap-2 p-4 rounded-none ${status === "success"
+                  ? "bg-[#7C3AED]/20 text-[#7C3AED]"
+                  : "bg-red-500/10 text-red-400"
+                  }`}
               >
                 {status === "success" ? (
                   <CheckCircle className="w-5 h-5 shrink-0" />
                 ) : (
                   <XCircle className="w-5 h-5 shrink-0" />
                 )}
-                <p className="text-sm">{statusMessage}</p>
+                <p className="text-sm font-bold tracking-wider">{statusMessage}</p>
               </div>
             )}
 
-            <Button
-              type="submit"
+            <button
+              type="button"
+              onClick={handleSubmit}
               disabled={isLoading}
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full py-4 rounded-full font-medium uppercase tracking-widest text-sm sm:text-base text-white transition-all hover:opacity-90 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
+              style={{
+                background: 'linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%)',
+                boxShadow: '0px 4px 4px rgba(181,1,167,0.25), inset 4px 4px 12px #7721B1',
+                outline: '2px solid white',
+                outlineOffset: '-3px'
+              }}
             >
               {isLoading ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Sending...
+                  SENDING...
                 </>
               ) : (
                 "Send Message"
               )}
-            </Button>
+            </button>
           </form>
         </div>
       </div>
